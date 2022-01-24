@@ -1,2 +1,2 @@
-# Primeira-aplica-o-java
+# Primeira-aplicacao-java
 Primeira aplicação feita em java
