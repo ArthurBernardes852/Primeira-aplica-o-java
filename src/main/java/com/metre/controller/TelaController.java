@@ -9,9 +9,7 @@ import javafx.scene.control.*;
 
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class TelaController implements Initializable {
@@ -23,28 +21,25 @@ public class TelaController implements Initializable {
     @FXML
     public Button btnSalvar;
     @FXML
-    public ToggleButton botao2;
-    @FXML
     public DatePicker data;
-    @FXML
-    public Label lblResultados;
     @FXML
     public CheckBox checkM, checkF;
     @FXML
     public ComboBox comboFuncao;
-
+    @FXML
+    public TextArea txtListagem;
     private ObservableList Funcoes = FXCollections.observableArrayList();
+    Connection connection = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Funcoes.add("Gerência");
         Funcoes.add("Administrativo");
         Funcoes.add("Operacional");
-
         comboFuncao.setItems(Funcoes);
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mariadb://localhost:3307/arthurTeste?user=metre&password=durama@357");
+            connection = DriverManager.getConnection("jdbc:mariadb://localhost:3307/arthurTeste?user=metre&password=durama@357");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -52,39 +47,61 @@ public class TelaController implements Initializable {
 
     @FXML
     private void captureInfo(ActionEvent event) {
+        try {
+            PreparedStatement stms = connection.prepareStatement("INSERT INTO pessoa (nome, idade, funcao, dt_nasc, sexo, user, password)  VALUES(?, ?, ?, ?, ?, ? , ?);");
+            stms.setString(1, txtNome.getText());
+            stms.setInt(2, Integer.parseInt(txtIdade.getText()));
+            stms.setString(3, comboFuncao.getValue().toString());
+            stms.setDate(4, Date.valueOf(data.getValue()));
+            stms.setString(5, sexoFuncionario());
+            stms.setString(6, txtUsuario.getText());
+            stms.setString(7, txtSenha.getText());
+            int registrosAfetados = stms.executeUpdate();
+            System.out.println(registrosAfetados);
+            stms.close();
+        } catch (Exception e) {
 
-        lblResultados.setText("Nome " + txtNome.getText() + "\n" +
-                "Idade: " + txtIdade.getText() + "\n" +
-                "Função: " + comboFuncao.getValue() + "\n" +
-                "Data Nascimento: " + data.getValue() + "\n" +
-                "Sexo: " + sexoFuncionario() + "\n" +
-                "Usuario: " + txtUsuario.getText() + "\n" +
-                "Senha: " + txtSenha.getText() + "\n"
-        );
+        }
+    }
+
+    @FXML
+    private void listInfo(ActionEvent event) {
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from pessoa");
+            while (rs.next()) {
+                txtListagem.setText(txtListagem.getText() + "" + rs.getInt(1) + " - " + rs.getString(2)
+                        + " " + rs.getInt(3) + ", " + rs.getString(4) + " " + rs.getDate(5)
+                        + " " + rs.getString(6) + " " + rs.getString(7) + " "
+                        + rs.getString(8) + "\n");
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private String sexoFuncionario() {
         if (checkF.isSelected() && !checkM.isSelected()) {
             return "Feminino";
-        }
-        if (!checkF.isSelected() && checkM.isSelected()) {
-            return "Masculino";
-        }
-        if (checkF.isSelected() && checkM.isSelected()) {
-            return "Selecione apenas UMA opção";
         } else {
-            return "Selecione uma opção";
+            return "Masculino";
         }
     }
 
     @FXML
-    private void mudaStatus(ActionEvent evento){
-        if (botao2.isSelected()){
-            botao2.setText("Ativo");
-        } else {
-            botao2.setText("Inativo");
-        }
+    private void onMaculino(ActionEvent event) {
+        if (checkM.isSelected()) {
+            checkF.setSelected(false);
+        } else
+            checkF.setSelected(true);
     }
 
-
+    @FXML
+    private void onFeminino(ActionEvent event) {
+        if (checkF.isSelected()) {
+            checkM.setSelected(false);
+        } else
+            checkM.setSelected(true);
+    }
 }
