@@ -71,7 +71,7 @@ public class TelaController implements Initializable {
             ResultSet rs = stmt.executeQuery("select * from pessoa");
             while (rs.next()) {
                 txtListagem.setText(txtListagem.getText() + "" + rs.getInt(1) + " - " + rs.getString(2)
-                        + " " + rs.getInt(3) + ", " + rs.getString(4) + " " + rs.getDate(5)
+                        + " " + rs.getInt(3) + ", Cargo: " + rs.getString(4) + " " + rs.getDate(5)
                         + " " + rs.getString(6) + " " + rs.getString(7) + " "
                         + rs.getString(8) + "\n");
             }
