@@ -29,7 +29,7 @@
       </VBox>
       <HBox layoutX="225.0" layoutY="376.0" spacing="50.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="375.0">
          <children>
-            <Button fx:id="btnEntrar" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="ENTRAR" textAlignment="CENTER">
+            <Button fx:id="btnEntrar" alignment="CENTER" mnemonicParsing="false" onAction="#telaLista" prefHeight="50.0" prefWidth="150.0" text="LISTAR" textAlignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>

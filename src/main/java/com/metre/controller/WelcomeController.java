@@ -21,6 +21,10 @@ public class WelcomeController implements Initializable {
 
     @FXML
     public void telaCadastro(ActionEvent event){
+        App.changeScreen("tela");
+    }
+    @FXML
+    public void telaLista(ActionEvent event){
         App.changeScreen("cadastro");
     }
 }

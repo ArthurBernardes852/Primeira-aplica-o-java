@@ -6,7 +6,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -43,7 +42,7 @@
          <children>
             <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text="Data Nascimento">
+                  <Label text="Data Contratação">
                      <font>
                         <Font name="SansSerif Regular" size="14.0" />
                      </font>
@@ -73,14 +72,8 @@
       <HBox alignment="CENTER" layoutX="255.0" layoutY="354.0" prefHeight="38.0" prefWidth="291.0" spacing="15.0">
          <children>
             <Button fx:id="btnSalvar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#captureInfo" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #4682B4;" text="Salvar" textAlignment="CENTER" textFill="WHITE" />
-            <Button fx:id="btnListar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#listInfo" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #4682B4;" text="Listar" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
             <Button fx:id="btnVoltar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#voltarTela" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #4682B4;" text="Voltar" textFill="WHITE" />
          </children>
       </HBox>
-      <TextArea fx:id="txtListagem" layoutX="71.0" layoutY="411.0" prefHeight="181.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="411.0" />
    </children>
 </AnchorPane>

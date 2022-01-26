@@ -9,8 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private static Stage stage;
-    private static Scene cena;
-    private static Scene cadastro;
+    private static Scene cena, cadastro, tela;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -20,8 +19,11 @@ public class App extends Application {
 
         Parent fxmlMain = FXMLLoader.load(getClass().getResource("/fxml/WelcomeFXML.fxml"));
         cena = new Scene(fxmlMain);
-        Parent fxmlCadastro = FXMLLoader.load(getClass().getResource("/fxml/TelaFXML.fxml"));
+        Parent fxmlTela = FXMLLoader.load(getClass().getResource("/fxml/TelaFXML.fxml"));
+        tela = new Scene(fxmlTela);
+        Parent fxmlCadastro = FXMLLoader.load(getClass().getResource("/fxml/CadastrosFXML.fxml"));
         cadastro = new Scene(fxmlCadastro);
+
 
         primaryStage.setScene(cena);
         primaryStage.show();
@@ -31,6 +33,9 @@ public class App extends Application {
         switch (scr){
             case "cena":
                 stage.setScene(cena);
+                break;
+            case "tela":
+                stage.setScene(tela);
                 break;
             case "cadastro":
                 stage.setScene(cadastro);
