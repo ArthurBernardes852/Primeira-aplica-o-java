@@ -1,12 +1,12 @@
 package com.metre.controller;
 
+import com.metre.app.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
 
 import java.net.URL;
 import java.sql.*;
@@ -19,7 +19,7 @@ public class TelaController implements Initializable {
     @FXML
     public PasswordField txtSenha;
     @FXML
-    public Button btnSalvar;
+    public Button btnSalvar, btnVoltar;
     @FXML
     public DatePicker data;
     @FXML
@@ -28,6 +28,7 @@ public class TelaController implements Initializable {
     public ComboBox comboFuncao;
     @FXML
     public TextArea txtListagem;
+
     private ObservableList Funcoes = FXCollections.observableArrayList();
     Connection connection = null;
 
@@ -103,5 +104,10 @@ public class TelaController implements Initializable {
             checkM.setSelected(false);
         } else
             checkM.setSelected(true);
+    }
+
+    @FXML
+    public void voltarTela(ActionEvent event) {
+        App.changeScreen("cena");
     }
 }
