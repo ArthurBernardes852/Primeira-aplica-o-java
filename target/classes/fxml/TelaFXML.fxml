@@ -78,6 +78,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
+            <Button fx:id="btnVoltar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#voltarTela" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #4682B4;" text="Voltar" textFill="WHITE" />
          </children>
       </HBox>
       <TextArea fx:id="txtListagem" layoutX="71.0" layoutY="411.0" prefHeight="181.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="411.0" />
