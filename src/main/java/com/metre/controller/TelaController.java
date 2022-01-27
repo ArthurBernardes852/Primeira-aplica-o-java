@@ -26,8 +26,6 @@ public class TelaController implements Initializable {
     public CheckBox checkM, checkF;
     @FXML
     public ComboBox comboFuncao;
-    @FXML
-    public TextArea txtListagem;
 
     private ObservableList Funcoes = FXCollections.observableArrayList();
     Connection connection = null;
@@ -61,23 +59,6 @@ public class TelaController implements Initializable {
             System.out.println(registrosAfetados);
             stms.close();
         } catch (Exception e) {
-
-        }
-    }
-
-    @FXML
-    private void listInfo(ActionEvent event) {
-        try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from pessoa");
-            while (rs.next()) {
-                txtListagem.setText(txtListagem.getText() + "" + rs.getInt(1) + " - " + rs.getString(2)
-                        + " " + rs.getInt(3) + ", Cargo: " + rs.getString(4) + " " + rs.getDate(5)
-                        + " " + rs.getString(6) + " " + rs.getString(7) + " "
-                        + rs.getString(8) + "\n");
-            }
-            rs.close();
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -92,18 +73,12 @@ public class TelaController implements Initializable {
 
     @FXML
     private void onMaculino(ActionEvent event) {
-        if (checkM.isSelected()) {
-            checkF.setSelected(false);
-        } else
-            checkF.setSelected(true);
+        checkF.setSelected(!checkM.isSelected());
     }
 
     @FXML
     private void onFeminino(ActionEvent event) {
-        if (checkF.isSelected()) {
-            checkM.setSelected(false);
-        } else
-            checkM.setSelected(true);
+        checkM.setSelected(!checkF.isSelected());
     }
 
     @FXML
